@@ -1,0 +1,1703 @@
+[
+  {
+    "crop_id": "CROP-01",
+    "crop_name": "Spinach",
+    "scientific_name": "Spinacia oleracea",
+    "gbif_usage_key": 3083868,
+    "family": "Amaranthaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 45,
+    "planting_months_western_cape": [
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September"
+    ],
+    "planting_months_summer_rainfall": [
+      "February",
+      "March",
+      "April",
+      "August",
+      "September"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Strawberry",
+      "Cabbage",
+      "Cauliflower",
+      "Radish"
+    ],
+    "avoid_near": [
+      "Fennel",
+      "Potato"
+    ],
+    "description": "Fast-growing cool-season leafy green that demands nitrogen-rich soil and consistent moisture; sensitive to acidic soil below pH 6.0."
+  },
+  {
+    "crop_id": "CROP-02",
+    "crop_name": "Heirloom Tomato",
+    "scientific_name": "Solanum lycopersicum",
+    "gbif_usage_key": 2930137,
+    "family": "Solanaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 35,
+    "days_to_harvest": 80,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+      "January"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Basil",
+      "Parsley",
+      "Carrot",
+      "Marigold"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Fennel",
+      "Cabbage"
+    ],
+    "description": "High-value warm-season crop requiring well-drained fertile soil, full sun, and consistent irrigation to prevent blossom-end rot."
+  },
+  {
+    "crop_id": "CROP-03",
+    "crop_name": "Cape Gooseberry",
+    "scientific_name": "Physalis peruviana",
+    "gbif_usage_key": 2928906,
+    "family": "Solanaceae",
+    "soil_ph_min": 5.5,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 15.0,
+    "optimal_temp_max_c": 28.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 105,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "November"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Basil",
+      "Mint",
+      "Sweet Pepper"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Eggplant"
+    ],
+    "description": "Hardy indigenous-favoured berry shrub that yields sweet-tart papery husked fruit; performs well in moderate to sandy coastal soils."
+  },
+  {
+    "crop_id": "CROP-04",
+    "crop_name": "Kale",
+    "scientific_name": "Brassica oleracea var. acephala",
+    "gbif_usage_key": 3042858,
+    "family": "Brassicaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 8.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 28,
+    "days_to_harvest": 55,
+    "planting_months_western_cape": [
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August"
+    ],
+    "planting_months_summer_rainfall": [
+      "January",
+      "February",
+      "March",
+      "August",
+      "September"
+    ],
+    "preferred_soil_types": [
+      "loam",
+      "clay_loam",
+      "clay"
+    ],
+    "companion_plants": [
+      "Beetroot",
+      "Rosemary",
+      "Thyme",
+      "Dill"
+    ],
+    "avoid_near": [
+      "Strawberry",
+      "Tomato",
+      "Green Beans"
+    ],
+    "description": "Extremely resilient brassica providing continuous harvests through winter cold snaps; sweetens following light frosts."
+  },
+  {
+    "crop_id": "CROP-05",
+    "crop_name": "Butternut Squash",
+    "scientific_name": "Cucurbita moschata",
+    "gbif_usage_key": 2874513,
+    "family": "Cucurbitaceae",
+    "soil_ph_min": 5.8,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 32.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 95,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Sweet Corn",
+      "Green Beans",
+      "Radish"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Fennel"
+    ],
+    "description": "Vigorous trailing winter squash with dense nutty flesh and superb winter storability; thrives in hot sunny Cape summers."
+  },
+  {
+    "crop_id": "CROP-06",
+    "crop_name": "Sweet Pepper",
+    "scientific_name": "Capsicum annuum",
+    "gbif_usage_key": 2932942,
+    "family": "Solanaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 75,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Basil",
+      "Carrot",
+      "Parsley",
+      "Onion"
+    ],
+    "avoid_near": [
+      "Fennel",
+      "Broad Bean"
+    ],
+    "description": "Thick-walled bell pepper delivering sweet crisp fruit when supplied with warm sunny positions and even soil moisture."
+  },
+  {
+    "crop_id": "CROP-07",
+    "crop_name": "Beetroot",
+    "scientific_name": "Beta vulgaris",
+    "gbif_usage_key": 3083501,
+    "family": "Amaranthaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 60,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "January",
+      "February"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Lettuce",
+      "Red Onion",
+      "Cabbage",
+      "Kale"
+    ],
+    "avoid_near": [
+      "Green Beans",
+      "Sweet Corn"
+    ],
+    "description": "Dual-purpose root and green crop rich in betalains and minerals; requires stoneless loose soil to form uniform globes."
+  },
+  {
+    "crop_id": "CROP-08",
+    "crop_name": "Carrot",
+    "scientific_name": "Daucus carota",
+    "gbif_usage_key": 3034725,
+    "family": "Apiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 14.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 22,
+    "days_to_harvest": 70,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "January",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Lettuce",
+      "Radish",
+      "Rosemary",
+      "Chives"
+    ],
+    "avoid_near": [
+      "Fennel",
+      "Dill",
+      "Parsnip"
+    ],
+    "description": "Deep taproot crop prized for sweet crunchy roots; requires fine, stone-free sandy loam to prevent forking."
+  },
+  {
+    "crop_id": "CROP-09",
+    "crop_name": "Swiss Chard",
+    "scientific_name": "Beta vulgaris subsp. vulgaris",
+    "gbif_usage_key": 3083503,
+    "family": "Amaranthaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 28.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 28,
+    "days_to_harvest": 50,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "February",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+      "January",
+      "February"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Red Onion",
+      "Lavender",
+      "Green Beans"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Sweet Corn"
+    ],
+    "description": "Hardy Cape staple providing abundant rainbow stems and succulent leaves across hot summers and cool winters alike."
+  },
+  {
+    "crop_id": "CROP-10",
+    "crop_name": "Zucchini",
+    "scientific_name": "Cucurbita pepo",
+    "gbif_usage_key": 2874508,
+    "family": "Cucurbitaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 35,
+    "days_to_harvest": 50,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Green Beans",
+      "Sweet Corn",
+      "Nasturtium"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Fennel"
+    ],
+    "description": "Prolific summer bush squash yielding tender fruit within weeks of warm soil germination; requires heavy organic matter."
+  },
+  {
+    "crop_id": "CROP-11",
+    "crop_name": "Green Beans",
+    "scientific_name": "Phaseolus vulgaris",
+    "gbif_usage_key": 5350444,
+    "family": "Fabaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 16.0,
+    "optimal_temp_max_c": 28.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 55,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December",
+      "January"
+    ],
+    "planting_months_summer_rainfall": [
+      "September",
+      "October",
+      "November",
+      "December",
+      "January"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Cucumber",
+      "Strawberry",
+      "Sweet Corn"
+    ],
+    "avoid_near": [
+      "Red Onion",
+      "Garlic",
+      "Leek",
+      "Fennel"
+    ],
+    "description": "Nitrogen-fixing legume producing tender pods; improves soil fertility naturally for subsequent heavy-feeding plantings."
+  },
+  {
+    "crop_id": "CROP-12",
+    "crop_name": "Garden Peas",
+    "scientific_name": "Pisum sativum",
+    "gbif_usage_key": 2953291,
+    "family": "Fabaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 20.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 65,
+    "planting_months_western_cape": [
+      "April",
+      "May",
+      "June",
+      "July"
+    ],
+    "planting_months_summer_rainfall": [
+      "March",
+      "April",
+      "May",
+      "June"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Radish",
+      "Cucumber",
+      "Green Beans"
+    ],
+    "avoid_near": [
+      "Red Onion",
+      "Garlic",
+      "Leek"
+    ],
+    "description": "Sweet cool-season climber fixing atmospheric nitrogen; highly rewarding in Cape winter gardens with bamboo staking."
+  },
+  {
+    "crop_id": "CROP-13",
+    "crop_name": "Broccoli",
+    "scientific_name": "Brassica oleracea var. italica",
+    "gbif_usage_key": 3042859,
+    "family": "Brassicaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.2,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 32,
+    "days_to_harvest": 75,
+    "planting_months_western_cape": [
+      "February",
+      "March",
+      "April",
+      "May",
+      "June"
+    ],
+    "planting_months_summer_rainfall": [
+      "January",
+      "February",
+      "March",
+      "April"
+    ],
+    "preferred_soil_types": [
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Rosemary",
+      "Thyme",
+      "Beetroot",
+      "Celery"
+    ],
+    "avoid_near": [
+      "Strawberry",
+      "Tomato"
+    ],
+    "description": "Prized winter head-forming brassica with high nutrient demand; requires steady irrigation to form compact florets."
+  },
+  {
+    "crop_id": "CROP-14",
+    "crop_name": "Cauliflower",
+    "scientific_name": "Brassica oleracea var. botrytis",
+    "gbif_usage_key": 3042860,
+    "family": "Brassicaceae",
+    "soil_ph_min": 6.2,
+    "soil_ph_max": 7.2,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 20.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 35,
+    "days_to_harvest": 85,
+    "planting_months_western_cape": [
+      "February",
+      "March",
+      "April",
+      "May"
+    ],
+    "planting_months_summer_rainfall": [
+      "January",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Celery",
+      "Spinach",
+      "Thyme"
+    ],
+    "avoid_near": [
+      "Tomato",
+      "Strawberry"
+    ],
+    "description": "Cool-season curd brassica sensitive to heat checks and moisture fluctuations; demands fertile, well-limed soil."
+  },
+  {
+    "crop_id": "CROP-15",
+    "crop_name": "Cabbage",
+    "scientific_name": "Brassica oleracea var. capitata",
+    "gbif_usage_key": 3042861,
+    "family": "Brassicaceae",
+    "soil_ph_min": 6.2,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 80,
+    "planting_months_western_cape": [
+      "February",
+      "March",
+      "April",
+      "May",
+      "June"
+    ],
+    "planting_months_summer_rainfall": [
+      "January",
+      "February",
+      "March",
+      "July",
+      "August"
+    ],
+    "preferred_soil_types": [
+      "loam",
+      "clay_loam",
+      "clay"
+    ],
+    "companion_plants": [
+      "Rosemary",
+      "Sage",
+      "Beetroot",
+      "Dill"
+    ],
+    "avoid_near": [
+      "Tomato",
+      "Green Beans"
+    ],
+    "description": "Dense head-forming vegetable essential to community nutrition; highly responsive to well-rotted manure additions."
+  },
+  {
+    "crop_id": "CROP-16",
+    "crop_name": "Lettuce",
+    "scientific_name": "Lactuca sativa",
+    "gbif_usage_key": 3139824,
+    "family": "Asteraceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 26,
+    "days_to_harvest": 40,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March",
+      "April",
+      "May"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March",
+      "April"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Radish",
+      "Strawberry",
+      "Cucumber"
+    ],
+    "avoid_near": [
+      "Parsley",
+      "Celery"
+    ],
+    "description": "Fast-cycling salad green requiring regular shallow watering and afternoon shade in warmest Cape summer months."
+  },
+  {
+    "crop_id": "CROP-17",
+    "crop_name": "Sweet Potato",
+    "scientific_name": "Ipomoea batatas",
+    "gbif_usage_key": 2928574,
+    "family": "Convolvulaceae",
+    "soil_ph_min": 5.2,
+    "soil_ph_max": 6.5,
+    "optimal_temp_min_c": 20.0,
+    "optimal_temp_max_c": 32.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 120,
+    "planting_months_western_cape": [
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Thyme",
+      "Green Beans",
+      "Dill"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Pumpkin"
+    ],
+    "description": "Tuberous warm-season vine that tolerates mildly acidic soils down to pH 5.2 and provides nutrient-rich orange tubers."
+  },
+  {
+    "crop_id": "CROP-18",
+    "crop_name": "Potato",
+    "scientific_name": "Solanum tuberosum",
+    "gbif_usage_key": 2930262,
+    "family": "Solanaceae",
+    "soil_ph_min": 5.0,
+    "soil_ph_max": 6.5,
+    "optimal_temp_min_c": 14.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 90,
+    "planting_months_western_cape": [
+      "July",
+      "August",
+      "September",
+      "January",
+      "February"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "December",
+      "January"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Green Beans",
+      "Sweet Corn",
+      "Cabbage"
+    ],
+    "avoid_near": [
+      "Heirloom Tomato",
+      "Eggplant",
+      "Pumpkin",
+      "Cucumber"
+    ],
+    "description": "Essential starch tuber that thrives in moderately acidic soils (pH 5.0-6.0), reducing potato scab incidence significantly."
+  },
+  {
+    "crop_id": "CROP-19",
+    "crop_name": "Red Onion",
+    "scientific_name": "Allium cepa",
+    "gbif_usage_key": 2770284,
+    "family": "Amaryllidaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 26.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 22,
+    "days_to_harvest": 110,
+    "planting_months_western_cape": [
+      "April",
+      "May",
+      "June",
+      "July"
+    ],
+    "planting_months_summer_rainfall": [
+      "March",
+      "April",
+      "May",
+      "June"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Beetroot",
+      "Lettuce",
+      "Tomato"
+    ],
+    "avoid_near": [
+      "Green Beans",
+      "Garden Peas",
+      "Broad Bean"
+    ],
+    "description": "Photoperiod-sensitive allium producing crisp pungent red bulbs with excellent keeping quality in ventilated winter storage."
+  },
+  {
+    "crop_id": "CROP-20",
+    "crop_name": "Garlic",
+    "scientific_name": "Allium sativum",
+    "gbif_usage_key": 2770245,
+    "family": "Amaryllidaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.2,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 20,
+    "days_to_harvest": 150,
+    "planting_months_western_cape": [
+      "March",
+      "April",
+      "May"
+    ],
+    "planting_months_summer_rainfall": [
+      "March",
+      "April",
+      "May"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Heirloom Tomato",
+      "Rosemary",
+      "Peppers",
+      "Carrot"
+    ],
+    "avoid_near": [
+      "Green Beans",
+      "Garden Peas",
+      "Parsley"
+    ],
+    "description": "Cool-season bulb needing winter chill vernalization to segment into fat aromatic cloves; hates stagnant waterlogged beds."
+  },
+  {
+    "crop_id": "CROP-21",
+    "crop_name": "Leek",
+    "scientific_name": "Allium ampeloprasum",
+    "gbif_usage_key": 2770280,
+    "family": "Amaryllidaceae",
+    "soil_ph_min": 6.2,
+    "soil_ph_max": 7.2,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 26,
+    "days_to_harvest": 100,
+    "planting_months_western_cape": [
+      "February",
+      "March",
+      "April",
+      "May"
+    ],
+    "planting_months_summer_rainfall": [
+      "January",
+      "February",
+      "March",
+      "April"
+    ],
+    "preferred_soil_types": [
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Celery",
+      "Tomato"
+    ],
+    "avoid_near": [
+      "Green Beans",
+      "Garden Peas"
+    ],
+    "description": "Hardy long-standing allium providing thick white blanched shafts through winter storms and early spring."
+  },
+  {
+    "crop_id": "CROP-22",
+    "crop_name": "Radish",
+    "scientific_name": "Raphanus sativus",
+    "gbif_usage_key": 3042617,
+    "family": "Brassicaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 20,
+    "days_to_harvest": 25,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "March",
+      "April",
+      "May"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Cucumber",
+      "Lettuce",
+      "Garden Peas"
+    ],
+    "avoid_near": [
+      "Cabbage",
+      "Cauliflower"
+    ],
+    "description": "Lightning-fast root radish serving as ideal companion row marker; yields crisp peppery bulbs in less than four weeks."
+  },
+  {
+    "crop_id": "CROP-23",
+    "crop_name": "Turnip",
+    "scientific_name": "Brassica rapa",
+    "gbif_usage_key": 3042857,
+    "family": "Brassicaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 24,
+    "days_to_harvest": 50,
+    "planting_months_western_cape": [
+      "March",
+      "April",
+      "May",
+      "August",
+      "September"
+    ],
+    "planting_months_summer_rainfall": [
+      "February",
+      "March",
+      "April",
+      "August",
+      "September"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Garden Peas",
+      "Radish",
+      "Red Onion"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Tomato"
+    ],
+    "description": "Resilient cool-season globe root yielding both peppery edible tops and tender sweet roots; thrives in autumn."
+  },
+  {
+    "crop_id": "CROP-24",
+    "crop_name": "Eggplant",
+    "scientific_name": "Solanum melongena",
+    "gbif_usage_key": 2930138,
+    "family": "Solanaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 20.0,
+    "optimal_temp_max_c": 32.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 32,
+    "days_to_harvest": 85,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Green Beans",
+      "Sweet Pepper",
+      "Marigold"
+    ],
+    "avoid_near": [
+      "Fennel",
+      "Potato"
+    ],
+    "description": "Heat-worshipping solanaceous perennial grown as annual; produces glossy purple fruit under prolonged warm Cape sunshine."
+  },
+  {
+    "crop_id": "CROP-25",
+    "crop_name": "Cucumber",
+    "scientific_name": "Cucumis sativus",
+    "gbif_usage_key": 2874568,
+    "family": "Cucurbitaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 35,
+    "days_to_harvest": 60,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "September",
+      "October",
+      "November",
+      "December",
+      "January"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Sweet Corn",
+      "Green Beans",
+      "Radish",
+      "Sunflower"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Aromatic Herbs"
+    ],
+    "description": "Fast-growing vine delivering thirst-quenching crisp cucumbers; requires consistent deep hydration to prevent bitterness."
+  },
+  {
+    "crop_id": "CROP-26",
+    "crop_name": "Pumpkin",
+    "scientific_name": "Cucurbita maxima",
+    "gbif_usage_key": 2874515,
+    "family": "Cucurbitaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 32.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 110,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Sweet Corn",
+      "Green Beans",
+      "Nasturtium"
+    ],
+    "avoid_near": [
+      "Potato"
+    ],
+    "description": "Sprawling traditional boerpampoen vine yielding large hearty squash with sweet dense orange flesh for stewing and roasting."
+  },
+  {
+    "crop_id": "CROP-27",
+    "crop_name": "Watermelon",
+    "scientific_name": "Citrullus lanatus",
+    "gbif_usage_key": 2874621,
+    "family": "Cucurbitaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 22.0,
+    "optimal_temp_max_c": 35.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 28,
+    "days_to_harvest": 90,
+    "planting_months_western_cape": [
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam"
+    ],
+    "companion_plants": [
+      "Radish",
+      "Oregano",
+      "Marigold"
+    ],
+    "avoid_near": [
+      "Potato",
+      "Zucchini"
+    ],
+    "description": "Heat-loving Southern African native desert vine; produces sweet refreshing melons in deep sandy, well-warmed beds."
+  },
+  {
+    "crop_id": "CROP-28",
+    "crop_name": "Strawberry",
+    "scientific_name": "Fragaria ananassa",
+    "gbif_usage_key": 3029969,
+    "family": "Rosaceae",
+    "soil_ph_min": 5.5,
+    "soil_ph_max": 6.5,
+    "optimal_temp_min_c": 14.0,
+    "optimal_temp_max_c": 26.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 28,
+    "days_to_harvest": 70,
+    "planting_months_western_cape": [
+      "April",
+      "May",
+      "June",
+      "July"
+    ],
+    "planting_months_summer_rainfall": [
+      "March",
+      "April",
+      "May"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Spinach",
+      "Borage",
+      "Thyme",
+      "Lettuce"
+    ],
+    "avoid_near": [
+      "Cabbage",
+      "Broccoli",
+      "Cauliflower"
+    ],
+    "description": "Perennial berry groundcover producing succulent red fruit across Cape spring; thrives with pine-straw acid mulching."
+  },
+  {
+    "crop_id": "CROP-29",
+    "crop_name": "Blueberry",
+    "scientific_name": "Vaccinium corymbosum",
+    "gbif_usage_key": 2882833,
+    "family": "Ericaceae",
+    "soil_ph_min": 4.5,
+    "soil_ph_max": 5.5,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 26.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 32,
+    "days_to_harvest": 120,
+    "planting_months_western_cape": [
+      "May",
+      "June",
+      "July",
+      "August"
+    ],
+    "planting_months_summer_rainfall": [
+      "April",
+      "May",
+      "June"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Pine Mulch",
+      "Heather",
+      "Thyme"
+    ],
+    "avoid_near": [
+      "Brassicas",
+      "Sweet Corn"
+    ],
+    "description": "Acidophilic fruit bush strictly requiring acidic soils between pH 4.5 and 5.5; naturally thrives in unlimed acidic soils."
+  },
+  {
+    "crop_id": "CROP-30",
+    "crop_name": "Rosemary",
+    "scientific_name": "Salvia rosmarinus",
+    "gbif_usage_key": 2927005,
+    "family": "Lamiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 12,
+    "days_to_harvest": 60,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Cabbage",
+      "Carrot",
+      "Green Beans"
+    ],
+    "avoid_near": [
+      "Basil",
+      "Pumpkin"
+    ],
+    "description": "Drought-hardy woody Mediterranean perennial; thrives on poor, rocky, free-draining soils with minimal irrigation."
+  },
+  {
+    "crop_id": "CROP-31",
+    "crop_name": "Basil",
+    "scientific_name": "Ocimum basilicum",
+    "gbif_usage_key": 2927096,
+    "family": "Lamiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 40,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Heirloom Tomato",
+      "Sweet Pepper",
+      "Eggplant"
+    ],
+    "avoid_near": [
+      "Rosemary",
+      "Rue"
+    ],
+    "description": "Aromatic warm-season herb enhancing tomato vigor and repelling whiteflies; intolerant of cold winds and frost."
+  },
+  {
+    "crop_id": "CROP-32",
+    "crop_name": "Coriander",
+    "scientific_name": "Coriandrum sativum",
+    "gbif_usage_key": 3034789,
+    "family": "Apiaceae",
+    "soil_ph_min": 6.2,
+    "soil_ph_max": 7.2,
+    "optimal_temp_min_c": 10.0,
+    "optimal_temp_max_c": 22.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 20,
+    "days_to_harvest": 35,
+    "planting_months_western_cape": [
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August"
+    ],
+    "planting_months_summer_rainfall": [
+      "February",
+      "March",
+      "April",
+      "August",
+      "September"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Carrot",
+      "Radish",
+      "Cabbage"
+    ],
+    "avoid_near": [
+      "Fennel"
+    ],
+    "description": "Cool-season annual herb providing fresh dhania leaves; bolts quickly to seed if planted during blistering summer heat."
+  },
+  {
+    "crop_id": "CROP-33",
+    "crop_name": "Parsley",
+    "scientific_name": "Petroselinum crispum",
+    "gbif_usage_key": 3034731,
+    "family": "Apiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 24,
+    "days_to_harvest": 60,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "January",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Heirloom Tomato",
+      "Carrot",
+      "Rosemary"
+    ],
+    "avoid_near": [
+      "Lettuce",
+      "Mint"
+    ],
+    "description": "Biennial culinary herb rich in vitamins A and C; establishes strong taproots in moisture-retentive loam."
+  },
+  {
+    "crop_id": "CROP-34",
+    "crop_name": "Mint",
+    "scientific_name": "Mentha spicata",
+    "gbif_usage_key": 2927161,
+    "family": "Lamiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 26.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 35,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Cabbage",
+      "Tomato",
+      "Cape Gooseberry"
+    ],
+    "avoid_near": [
+      "Parsley",
+      "Chamomile"
+    ],
+    "description": "Invigorating creeping perennial herb best contained in pots or bordered plots; thrives in rich moist shaded soils."
+  },
+  {
+    "crop_id": "CROP-35",
+    "crop_name": "Thyme",
+    "scientific_name": "Thymus vulgaris",
+    "gbif_usage_key": 2927038,
+    "family": "Lamiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 30.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 14,
+    "days_to_harvest": 55,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy",
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Cabbage",
+      "Eggplant",
+      "Potato",
+      "Tomato"
+    ],
+    "avoid_near": [
+      "Fennel"
+    ],
+    "description": "Hardy ground-hugging aromatic subshrub with tiny antiseptic leaves; requires exceptional drainage in wet winters."
+  },
+  {
+    "crop_id": "CROP-36",
+    "crop_name": "Chilli Pepper",
+    "scientific_name": "Capsicum frutescens",
+    "gbif_usage_key": 2932943,
+    "family": "Solanaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 6.8,
+    "optimal_temp_min_c": 20.0,
+    "optimal_temp_max_c": 34.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 26,
+    "days_to_harvest": 85,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Basil",
+      "Carrot",
+      "Red Onion"
+    ],
+    "avoid_near": [
+      "Fennel",
+      "Broad Bean"
+    ],
+    "description": "Fiery peri-peri chilli bush bearing pungent bird's-eye fruit; perennial in warm frost-free coastal microclimates."
+  },
+  {
+    "crop_id": "CROP-37",
+    "crop_name": "Broad Bean",
+    "scientific_name": "Vicia faba",
+    "gbif_usage_key": 2974773,
+    "family": "Fabaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 8.0,
+    "optimal_temp_max_c": 20.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 25,
+    "days_to_harvest": 100,
+    "planting_months_western_cape": [
+      "April",
+      "May",
+      "June"
+    ],
+    "planting_months_summer_rainfall": [
+      "March",
+      "April",
+      "May"
+    ],
+    "preferred_soil_types": [
+      "loam",
+      "clay_loam",
+      "clay"
+    ],
+    "companion_plants": [
+      "Potato",
+      "Rosemary",
+      "Cabbage"
+    ],
+    "avoid_near": [
+      "Red Onion",
+      "Garlic",
+      "Leek"
+    ],
+    "description": "Sturdy upright winter legume tolerating heavy clay soils; fixes substantial atmospheric nitrogen while bearing large edible pods."
+  },
+  {
+    "crop_id": "CROP-38",
+    "crop_name": "Sweet Corn",
+    "scientific_name": "Zea mays",
+    "gbif_usage_key": 5290052,
+    "family": "Poaceae",
+    "soil_ph_min": 5.8,
+    "soil_ph_max": 7.0,
+    "optimal_temp_min_c": 18.0,
+    "optimal_temp_max_c": 32.0,
+    "frost_tolerant": false,
+    "water_mm_per_week": 35,
+    "days_to_harvest": 80,
+    "planting_months_western_cape": [
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+      "January"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Green Beans",
+      "Pumpkin",
+      "Cucumber",
+      "Zucchini"
+    ],
+    "avoid_near": [
+      "Heirloom Tomato",
+      "Beetroot"
+    ],
+    "description": "High-standing grass providing sweet kernels; best planted in dense blocks for wind pollination during sunny summer months."
+  },
+  {
+    "crop_id": "CROP-39",
+    "crop_name": "Artichoke",
+    "scientific_name": "Cynara cardunculus",
+    "gbif_usage_key": 3113941,
+    "family": "Asteraceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 12.0,
+    "optimal_temp_max_c": 25.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 30,
+    "days_to_harvest": 180,
+    "planting_months_western_cape": [
+      "July",
+      "August",
+      "September"
+    ],
+    "planting_months_summer_rainfall": [
+      "July",
+      "August",
+      "September"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam",
+      "clay_loam"
+    ],
+    "companion_plants": [
+      "Rosemary",
+      "Tarragon",
+      "Lavender"
+    ],
+    "avoid_near": [
+      "Potato"
+    ],
+    "description": "Stately architectural perennial thistle producing gourmet edible flower buds and silvery architectural garden foliage."
+  },
+  {
+    "crop_id": "CROP-40",
+    "crop_name": "Fennel",
+    "scientific_name": "Foeniculum vulgare",
+    "gbif_usage_key": 3034791,
+    "family": "Apiaceae",
+    "soil_ph_min": 6.0,
+    "soil_ph_max": 7.5,
+    "optimal_temp_min_c": 14.0,
+    "optimal_temp_max_c": 24.0,
+    "frost_tolerant": true,
+    "water_mm_per_week": 22,
+    "days_to_harvest": 75,
+    "planting_months_western_cape": [
+      "August",
+      "September",
+      "October",
+      "February",
+      "March",
+      "April"
+    ],
+    "planting_months_summer_rainfall": [
+      "August",
+      "September",
+      "October",
+      "January",
+      "February",
+      "March"
+    ],
+    "preferred_soil_types": [
+      "sandy_loam",
+      "loam"
+    ],
+    "companion_plants": [
+      "Dill"
+    ],
+    "avoid_near": [
+      "Heirloom Tomato",
+      "Green Beans",
+      "Carrot",
+      "Kohlrabi"
+    ],
+    "description": "Anise-scented bulb vegetable attracting beneficial pollinating wasps; should be grown in isolated garden beds away from other crops."
+  }
+]

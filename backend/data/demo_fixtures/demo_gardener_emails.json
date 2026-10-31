@@ -1,0 +1,182 @@
+[
+  {
+    "email_id": "EMAIL-101",
+    "sender_name": "Sipho Ndlovu",
+    "sender_email": "sipho@capegardens.org.za",
+    "received_at": "2026-11-02T14:15:00Z",
+    "subject": "Woodstock planting report - plot w04",
+    "body": "Hi team, completed planting at Woodstock plot-w04 on Nov 2nd, 2026. Put in 24 Heirloom Tomato plants (scientific name Solanumm lykopersikun). Seed batch was BATCH-CT-2026-09. Forgot to bring my pH probe today, will measure tomorrow morning and email through.",
+    "parsed_hints": {
+      "planted_date_raw": "Nov 2nd, 2026",
+      "suburb": "Woodstock",
+      "plot_id": "plot-w04",
+      "crop_name": "Heirloom Tomato",
+      "species_scientific_raw": "Solanumm lykopersikun",
+      "quantity_planted": 24,
+      "measured_soil_ph": null,
+      "seed_batch_id": "BATCH-CT-2026-09"
+    }
+  },
+  {
+    "email_id": "EMAIL-102",
+    "sender_name": "Sipho Ndlovu",
+    "sender_email": "sipho@capegardens.org.za",
+    "received_at": "2026-11-03T07:45:00Z",
+    "subject": "Re: Woodstock planting report - plot w04 (pH update)",
+    "body": "Following up on my report from yesterday for Woodstock plot-w04 (planted 2026-11-02). Measured soil pH this morning with calibrated digital meter: exactly 5.3. Soil feels quite sandy and acidic.",
+    "parsed_hints": {
+      "planted_date_raw": "2026-11-02",
+      "suburb": "Woodstock",
+      "plot_id": "plot-w04",
+      "crop_name": null,
+      "species_scientific_raw": null,
+      "quantity_planted": null,
+      "measured_soil_ph": 5.3,
+      "seed_batch_id": null
+    }
+  },
+  {
+    "email_id": "EMAIL-103",
+    "sender_name": "Zanele Mbeki",
+    "sender_email": "zanele@capegardens.org.za",
+    "received_at": "2026-11-03T11:20:00Z",
+    "subject": "Planting complete at Constantia PLOT-C02",
+    "body": "Good day coordinator, on 03/11/2026 I finished planting Spinach (Spinacia oleracea) in Constantia PLOT-C02. Planted 30 units from batch BATCH-CT-2026-11. Soil test gave pH 6.4.",
+    "parsed_hints": {
+      "planted_date_raw": "03/11/2026",
+      "suburb": "Constantia",
+      "plot_id": "PLOT-C02",
+      "crop_name": "Spinach",
+      "species_scientific_raw": "Spinacia oleracea",
+      "quantity_planted": 30,
+      "measured_soil_ph": 6.4,
+      "seed_batch_id": "BATCH-CT-2026-11"
+    }
+  },
+  {
+    "email_id": "EMAIL-104",
+    "sender_name": "Zanele Mbeki",
+    "sender_email": "zanele@capegardens.org.za",
+    "received_at": "2026-11-03T16:05:00Z",
+    "subject": "Correction to quantity: Constantia PLOT-C02",
+    "body": "Quick correction to earlier email: we actually managed to transplant 40 Spinach seedlings instead of 30 into PLOT-C02 today (2026-11-03) using the same batch BATCH-CT-2026-11. Soil pH confirmed 6.4.",
+    "parsed_hints": {
+      "planted_date_raw": "2026-11-03",
+      "suburb": "Constantia",
+      "plot_id": "PLOT-C02",
+      "crop_name": "Spinach",
+      "species_scientific_raw": "Spinacia oleracea",
+      "quantity_planted": 40,
+      "measured_soil_ph": 6.4,
+      "seed_batch_id": "BATCH-CT-2026-11"
+    }
+  },
+  {
+    "email_id": "EMAIL-105",
+    "sender_name": "Pieter van der Merwe",
+    "sender_email": "pieter@capegardens.org.za",
+    "received_at": "2026-11-03T17:30:00Z",
+    "subject": "Kirstenbosch PLOT-K01 planting log",
+    "body": "Hello, planted 18 Kale seedlings at Kirstenbosch PLOT-K01 on 2026-11-03. Botanical name Brasika oleracia var. acefala. Soil pH measured 6.5. Batch code BATCH-CT-2026-12. Bed was pre-treated with leaf compost.",
+    "parsed_hints": {
+      "planted_date_raw": "2026-11-03",
+      "suburb": "Kirstenbosch",
+      "plot_id": "PLOT-K01",
+      "crop_name": "Kale",
+      "species_scientific_raw": "Brasika oleracia var. acefala",
+      "quantity_planted": 18,
+      "measured_soil_ph": 6.5,
+      "seed_batch_id": "BATCH-CT-2026-12"
+    }
+  },
+  {
+    "email_id": "EMAIL-106",
+    "sender_name": "Amina Patel",
+    "sender_email": "amina@capegardens.org.za",
+    "received_at": "2026-11-04T15:10:00Z",
+    "subject": "Bellville plot-b07 planting log",
+    "body": "Hi, on 4 Nov 2026 I finished planting 15 Butternut Squash mounds at Bellville plot-b07. Species listed as Kukurbitia moskata. Soil pH tested at 6.2 with batch BATCH-CT-2026-14.",
+    "parsed_hints": {
+      "planted_date_raw": "4 Nov 2026",
+      "suburb": "Bellville",
+      "plot_id": "plot-b07",
+      "crop_name": "Butternut Squash",
+      "species_scientific_raw": "Kukurbitia moskata",
+      "quantity_planted": 15,
+      "measured_soil_ph": 6.2,
+      "seed_batch_id": "BATCH-CT-2026-14"
+    }
+  },
+  {
+    "email_id": "EMAIL-107",
+    "sender_name": "Thabo Khumalo",
+    "sender_email": "thabo@capegardens.org.za",
+    "received_at": "2026-11-05T13:40:00Z",
+    "subject": "Durbanville PLOT-D03 update",
+    "body": "Good afternoon, planted 50 Beetroot seeds (Beta vulgaris) in Durbanville PLOT-D03 on 2026-11-05. Seed batch is BATCH-CT-2026-15. Soil pH reading is 6.5. Drip irrigation tested successfully.",
+    "parsed_hints": {
+      "planted_date_raw": "2026-11-05",
+      "suburb": "Durbanville",
+      "plot_id": "PLOT-D03",
+      "crop_name": "Beetroot",
+      "species_scientific_raw": "Beta vulgaris",
+      "quantity_planted": 50,
+      "measured_soil_ph": 6.5,
+      "seed_batch_id": "BATCH-CT-2026-15"
+    }
+  },
+  {
+    "email_id": "EMAIL-108",
+    "sender_name": "Lerato Molefe",
+    "sender_email": "lerato@capegardens.org.za",
+    "received_at": "2026-11-05T18:00:00Z",
+    "subject": "Observatory planting report - PLOT-O09",
+    "body": "Hi all, completed planting 35 Swiss Chard (Beta vulgaris) at Observatory in PLOT-O09 on 2026-11-05. Soil pH is 6.6, seed batch BATCH-CT-2026-16. Note: PLOT-O02 had irrigation leak so I moved to PLOT-O09 instead.",
+    "parsed_hints": {
+      "planted_date_raw": "2026-11-05",
+      "suburb": "Observatory",
+      "plot_id": "PLOT-O09",
+      "crop_name": "Swiss Chard",
+      "species_scientific_raw": "Beta vulgaris",
+      "quantity_planted": 35,
+      "measured_soil_ph": 6.6,
+      "seed_batch_id": "BATCH-CT-2026-16"
+    }
+  },
+  {
+    "email_id": "EMAIL-109",
+    "sender_name": "Johan Botha",
+    "sender_email": "johan@capegardens.org.za",
+    "received_at": "2026-11-06T12:00:00Z",
+    "subject": "Hout Bay PLOT-H05 seeding",
+    "body": "Hi team, seeded 60 Carrot rows (Daucus carota) at Hout Bay PLOT-H05 on 06/11/2026. The seed packet had no batch label and our soil pH probe battery was flat so no pH recorded.",
+    "parsed_hints": {
+      "planted_date_raw": "06/11/2026",
+      "suburb": "Hout Bay",
+      "plot_id": "PLOT-H05",
+      "crop_name": "Carrot",
+      "species_scientific_raw": "Daucus carota",
+      "quantity_planted": 60,
+      "measured_soil_ph": null,
+      "seed_batch_id": null
+    }
+  },
+  {
+    "email_id": "EMAIL-110",
+    "sender_name": "Nomsa Dlamini",
+    "sender_email": "nomsa@capegardens.org.za",
+    "received_at": "2026-11-06T15:30:00Z",
+    "subject": "Malmesbury PLOT-M02 planting done",
+    "body": "Greetings, planted 20 Cape Gooseberry plants (Physalis peruviana) at Malmesbury PLOT-M02 on 2026-11-06. Soil pH measured 6.1 and batch is BATCH-CT-2026-18. All shrubs mulched with aeration compost.",
+    "parsed_hints": {
+      "planted_date_raw": "2026-11-06",
+      "suburb": "Malmesbury",
+      "plot_id": "PLOT-M02",
+      "crop_name": "Cape Gooseberry",
+      "species_scientific_raw": "Physalis peruviana",
+      "quantity_planted": 20,
+      "measured_soil_ph": 6.1,
+      "seed_batch_id": "BATCH-CT-2026-18"
+    }
+  }
+]

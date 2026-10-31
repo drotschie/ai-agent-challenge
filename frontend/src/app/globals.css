@@ -1,0 +1,62 @@
+/* Hallmark · v2.0.0 · theme: custom (by request: Western Cape Botanical Garden) · genre: editorial · posture: committed · axes: light/roman-serif/warm · hero: banner · nav: edge-aligned · footer: colophon · job: verify-and-guide */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · weakest: S, generic cards replaced with Western Cape aerial garden banner, Cape soil pH tokens, and live ChromaDB/LangGraph telemetry */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-canvas: #FFF7EA;
+  --bg-surface: #FAF2E4;
+  --bg-sand: #E6D9C7;
+  --accent-mint: #C9D8C4;
+  --accent-sage: #8FB08A;
+  --surface-forest: #556B5A;
+  --text-ink: #1C2820;
+  --text-muted: #435448;
+  --color-paper: oklch(97.5% 0.018 85);
+  --color-ink: oklch(24% 0.02 150);
+  --color-accent: oklch(48% 0.04 148);
+  --color-accent-ink: oklch(97.5% 0.018 85);
+  --color-focus: oklch(48% 0.04 148);
+}
+
+html,
+body {
+  overflow-x: clip;
+  background-color: var(--bg-canvas);
+  color: var(--text-ink);
+  font-family: var(--font-sans);
+  background-image: radial-gradient(var(--bg-sand) 1.25px, transparent 1.25px);
+  background-size: 22px 22px;
+}
+
+::selection {
+  background-color: var(--accent-mint);
+  color: var(--text-ink);
+}
+
+* {
+  caret-color: var(--surface-forest);
+  scrollbar-color: var(--bg-sand) var(--bg-surface);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+button:active,
+a:active {
+  opacity: 0.92;
+}

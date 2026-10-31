@@ -1,0 +1,74 @@
+[
+  {
+    "event_id": "EVT-01",
+    "scheduled_date": "2026-11-02",
+    "suburb": "Woodstock",
+    "plot_id": "PLOT-W04",
+    "gardener_name": "Sipho Ndlovu",
+    "gardener_email": "sipho@capegardens.org.za",
+    "notes": "Scheduled heirloom tomato bed planting after morning soil prep."
+  },
+  {
+    "event_id": "EVT-02",
+    "scheduled_date": "2026-11-03",
+    "suburb": "Constantia",
+    "plot_id": "PLOT-C02",
+    "gardener_name": "Zanele Mbeki",
+    "gardener_email": "zanele@capegardens.org.za",
+    "notes": "Organic spinach bed installation in shaded terrace section."
+  },
+  {
+    "event_id": "EVT-03",
+    "scheduled_date": "2026-11-03",
+    "suburb": "Kirstenbosch",
+    "plot_id": "PLOT-K01",
+    "gardener_name": "Pieter van der Merwe",
+    "gardener_email": "pieter@capegardens.org.za",
+    "notes": "Tuscan kale seedlings planting in communal raised bed 1."
+  },
+  {
+    "event_id": "EVT-04",
+    "scheduled_date": "2026-11-04",
+    "suburb": "Bellville",
+    "plot_id": "PLOT-B07",
+    "gardener_name": "Amina Patel",
+    "gardener_email": "amina@capegardens.org.za",
+    "notes": "Butternut squash mounding on north-facing slope."
+  },
+  {
+    "event_id": "EVT-05",
+    "scheduled_date": "2026-11-05",
+    "suburb": "Durbanville",
+    "plot_id": "PLOT-D03",
+    "gardener_name": "Thabo Khumalo",
+    "gardener_email": "thabo@capegardens.org.za",
+    "notes": "Direct seeding beetroot rows with drip line alignment."
+  },
+  {
+    "event_id": "EVT-06",
+    "scheduled_date": "2026-11-05",
+    "suburb": "Observatory",
+    "plot_id": "PLOT-O02",
+    "gardener_name": "Lerato Molefe",
+    "gardener_email": "lerato@capegardens.org.za",
+    "notes": "Scheduled for plot PLOT-O02 swiss chard beds."
+  },
+  {
+    "event_id": "EVT-07",
+    "scheduled_date": "2026-11-06",
+    "suburb": "Hout Bay",
+    "plot_id": "PLOT-H05",
+    "gardener_name": "Johan Botha",
+    "gardener_email": "johan@capegardens.org.za",
+    "notes": "Carrot bed preparation and seed tape laying."
+  },
+  {
+    "event_id": "EVT-08",
+    "scheduled_date": "2026-11-06",
+    "suburb": "Malmesbury",
+    "plot_id": "PLOT-M02",
+    "gardener_name": "Nomsa Dlamini",
+    "gardener_email": "nomsa@capegardens.org.za",
+    "notes": "Cape gooseberry bush transplantation with organic compost."
+  }
+]

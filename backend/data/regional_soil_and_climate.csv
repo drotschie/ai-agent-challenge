@@ -1,0 +1,41 @@
+suburb_id,suburb,province,climate_zone,latitude,longitude,soil_type,baseline_soil_ph,baseline_ph_range,annual_rainfall_mm,summer_avg_temp_c,winter_min_temp_c,frost_risk,typical_amendment_need
+SUB-01,Woodstock,Western Cape,Mediterranean Coastal,-33.9268,18.4462,sandy_loam,5.5,5.3 - 5.8,620,24.5,8.5,low,Agricultural Lime 150g/m2 for neutral crops
+SUB-02,Constantia,Western Cape,Mediterranean Coastal,-34.0208,18.4239,loam,6.2,5.8 - 6.5,950,23.5,7.5,low,Compost and organic mulch
+SUB-03,Kirstenbosch,Western Cape,Mediterranean Coastal,-33.9875,18.4325,loam,6.0,5.7 - 6.4,1100,23.0,7.0,low,Leaf mold compost
+SUB-04,Bellville,Western Cape,Mediterranean Coastal,-33.8996,18.6294,clay_loam,6.4,6.0 - 6.8,520,26.5,9.0,low,Gypsum and coarse compost
+SUB-05,Durbanville,Western Cape,Mediterranean Coastal,-33.8344,18.6472,clay_loam,6.5,6.1 - 6.9,580,26.0,8.5,low,Organic mulch and well-rotted manure
+SUB-06,Observatory,Western Cape,Mediterranean Coastal,-33.9372,18.4719,clay,6.2,5.9 - 6.6,610,24.8,8.6,low,Coarse grit and compost to improve drainage
+SUB-07,Hout Bay,Western Cape,Mediterranean Coastal,-34.0439,18.3582,sandy_loam,5.8,5.5 - 6.2,780,23.8,8.2,low,Agricultural Lime 100g/m2 for brassicas
+SUB-08,Khayelitsha,Western Cape,Mediterranean Coastal,-34.0375,18.6653,clay,6.3,5.9 - 6.7,540,25.5,8.8,low,Compost and river sand for aeration
+SUB-09,Mitchells Plain,Western Cape,Mediterranean Coastal,-34.0494,18.6247,sandy,6.8,6.5 - 7.2,510,25.8,8.9,low,Heavy compost and straw mulch for moisture retention
+SUB-10,Rondebosch,Western Cape,Mediterranean Coastal,-33.9634,18.4772,loam,6.1,5.8 - 6.5,820,24.2,8.0,low,Organic compost
+SUB-11,Newlands,Western Cape,Mediterranean Coastal,-33.9744,18.4552,loam,5.9,5.6 - 6.3,1200,23.2,7.2,low,Dolomitic lime 80g/m2 for vegetables
+SUB-12,Sea Point,Western Cape,Mediterranean Coastal,-33.9167,18.3889,sandy,6.6,6.2 - 7.0,520,24.0,9.2,low,Compost and windbreak mulch
+SUB-13,Camps Bay,Western Cape,Mediterranean Coastal,-33.9511,18.3778,sandy,6.5,6.1 - 6.9,580,24.2,9.5,low,Compost and kelp meal
+SUB-14,Muizenberg,Western Cape,Mediterranean Coastal,-34.1081,18.4706,sandy,6.7,6.3 - 7.1,600,24.5,9.0,low,Compost and mulch against coastal winds
+SUB-15,Noordhoek,Western Cape,Mediterranean Coastal,-34.1167,18.3667,sandy_loam,5.9,5.6 - 6.3,720,24.0,8.4,low,Lime 100g/m2 and compost
+SUB-16,Simons Town,Western Cape,Mediterranean Coastal,-34.1933,18.4328,sandy_loam,6.0,5.7 - 6.4,680,24.1,9.0,low,Compost and organic mulching
+SUB-17,Somerset West,Western Cape,Mediterranean Coastal,-34.0833,18.85,clay_loam,6.1,5.8 - 6.5,750,26.2,8.0,low,Gypsum and organic compost
+SUB-18,Stellenbosch,Western Cape,Mediterranean Inland,-33.9321,18.8602,loam,5.8,5.5 - 6.2,720,27.5,7.0,low,Agricultural Lime 120g/m2 for vegetables
+SUB-19,Paarl,Western Cape,Mediterranean Inland,-33.7342,18.9622,clay_loam,6.2,5.8 - 6.6,680,29.5,6.8,low,Compost and straw mulch against heat
+SUB-20,Franschhoek,Western Cape,Mediterranean Inland,-33.9111,19.125,loam,5.9,5.5 - 6.3,850,28.0,6.5,low,Agricultural Lime 110g/m2
+SUB-21,Wellington,Western Cape,Mediterranean Inland,-33.6417,19.0111,clay_loam,6.3,5.9 - 6.7,630,30.0,6.2,low,Compost and deep mulch
+SUB-22,Malmesbury,Western Cape,Mediterranean Inland,-33.4608,18.7272,clay,6.5,6.1 - 7.0,420,29.8,6.0,low,Gypsum and aeration compost
+SUB-23,Ceres,Western Cape,Semi-Arid Highland,-33.37,19.31,clay,6.0,5.6 - 6.4,530,28.5,1.5,high,Agricultural Lime 140g/m2 and frost fleece
+SUB-24,Worcester,Western Cape,Semi-Arid Inland,-33.6465,19.4456,clay,6.7,6.3 - 7.2,280,31.0,4.5,moderate,Gypsum and heavy watering adjustments
+SUB-25,Hermanus,Western Cape,Mediterranean Coastal,-34.4167,19.2333,sandy_loam,5.7,5.4 - 6.1,690,23.5,8.0,low,Agricultural Lime 130g/m2
+SUB-26,George,Western Cape,Temperate Coastal,-33.963,22.4617,loam,5.6,5.2 - 6.0,850,24.5,7.5,low,Agricultural Lime 140g/m2
+SUB-27,Knysna,Western Cape,Temperate Coastal,-34.0351,23.0488,loam,5.8,5.4 - 6.2,890,24.2,8.0,low,Compost and light lime
+SUB-28,Gqeberha,Eastern Cape,Semi-Arid Coastal,-33.9608,25.6022,sandy_loam,6.3,5.9 - 6.7,580,25.0,8.5,low,Compost and windbreak mulch
+SUB-29,East London,Eastern Cape,Humid Subtropical,-32.97,27.87,sandy_loam,6.2,5.8 - 6.6,790,26.0,10.0,low,Organic mulch and compost
+SUB-30,Durban,KwaZulu-Natal,Humid Subtropical,-29.8587,31.0218,clay_loam,6.0,5.6 - 6.5,1010,28.0,11.5,low,Compost and drainage trenches
+SUB-31,Pietermaritzburg,KwaZulu-Natal,Subtropical Highland,-29.6167,30.3833,clay_loam,5.7,5.3 - 6.2,820,27.0,6.0,moderate,Agricultural Lime 150g/m2
+SUB-32,Bloemfontein,Free State,Semi-Arid Continental,-29.1167,26.2167,clay,6.8,6.4 - 7.3,550,29.0,-1.5,high,Gypsum and frost protection cloches
+SUB-33,Kimberley,Northern Cape,Semi-Arid Continental,-28.7386,24.7586,clay,7.2,6.8 - 7.6,410,31.5,0.5,high,Elemental Sulfur 50g/m2 for acid-loving crops
+SUB-34,Johannesburg,Gauteng,Subtropical Highland,-26.2041,28.0473,clay_loam,6.1,5.7 - 6.5,710,25.5,4.0,moderate,Compost and winter frost protection
+SUB-35,Soweto,Gauteng,Subtropical Highland,-26.2678,27.8585,clay_loam,6.2,5.8 - 6.6,700,25.8,3.8,moderate,Compost and winter mulch
+SUB-36,Pretoria,Gauteng,Subtropical Highland,-25.7479,28.2293,clay,6.4,6.0 - 6.8,670,28.0,5.0,low,Compost and gypsum
+SUB-37,Centurion,Gauteng,Subtropical Highland,-25.8603,28.1894,clay,6.3,5.9 - 6.7,680,27.5,4.5,moderate,Compost and gypsum
+SUB-38,Polokwane,Limpopo,Semi-Arid Plateau,-23.9045,29.4689,clay,6.5,6.1 - 7.0,480,28.5,4.2,moderate,Compost and organic mulch
+SUB-39,Mbombela,Mpumalanga,Humid Subtropical,-25.4753,30.9694,clay,5.8,5.4 - 6.2,790,29.0,8.0,low,Agricultural Lime 120g/m2
+SUB-40,Upington,Northern Cape,Arid Continental,-28.4478,21.2561,sandy,7.8,7.4 - 8.3,180,35.0,4.0,moderate,Elemental Sulfur 100g/m2 and shade cloth
