@@ -134,6 +134,22 @@ function SpinnerIcon() {
   );
 }
 
+function ArrowRightIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      className="w-3.5 h-3.5 flex-shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
 function formatSoilType(raw?: string): string {
   if (!raw) return "Loam";
   return raw
@@ -168,7 +184,12 @@ function getCropIcon(cropName: string) {
   return <LeafIcon />;
 }
 
-export function RagWorkspace() {
+interface RagWorkspaceProps {
+  /** Opens the Reference Data tab on the exact record behind a citation. */
+  onOpenSource?: (sourceFile: string, locator: string) => void;
+}
+
+export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
   const [question, setQuestion] = useState(
     "What vegetables grow well in Woodstock with soil pH 5.3, and how much lime do I need?"
   );
@@ -472,12 +493,16 @@ export function RagWorkspace() {
                   Sources:
                 </span>
                 {response.citations.slice(0, 4).map((c, idx) => (
-                  <span
+                  <button
                     key={idx}
-                    className="font-mono text-xs bg-surface border border-sand text-ink px-2.5 py-1 rounded-md"
+                    type="button"
+                    onClick={() => onOpenSource?.(c.source_file, c.locator)}
+                    title="Open this record in Reference Data"
+                    className="min-h-[44px] inline-flex items-center gap-1.5 font-mono text-xs bg-surface hover:bg-mint border border-sand hover:border-sage text-ink px-2.5 py-1 rounded-md transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
                   >
-                    {c.label}
-                  </span>
+                    <span>{c.label}</span>
+                    <ArrowRightIcon />
+                  </button>
                 ))}
                 {response.citations.length > 4 && (
                   <span className="text-xs text-muted px-2 py-1">
@@ -582,9 +607,17 @@ export function RagWorkspace() {
                           </p>
                         </div>
                       </div>
-                      <span className="bg-mint text-ink font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap self-start">
-                        {crop.citation}
-                      </span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onOpenSource?.("crop_planting_guide.json", crop.crop_name)
+                        }
+                        title="Open this crop in Reference Data"
+                        className="min-h-[44px] inline-flex items-center gap-1.5 bg-mint hover:bg-sage/60 text-ink font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap self-start transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                      >
+                        <span>{crop.citation}</span>
+                        <ArrowRightIcon />
+                      </button>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-muted my-2.5">
@@ -679,7 +712,7 @@ export function RagWorkspace() {
                   Retrieved Evidence Chunks
                 </h2>
                 <p className="text-xs text-muted">
-                  Click any source badge to inspect the full indexed text
+                  Expand a chunk to read its indexed text, or open the original row
                 </p>
               </div>
               <span className="text-xs font-sans bg-surface border border-sand px-2.5 py-1 rounded-full text-ink tabular-nums">
@@ -727,6 +760,15 @@ export function RagWorkspace() {
                         {chunk.text}
                       </div>
                     )}
+
+                    <button
+                      type="button"
+                      onClick={() => onOpenSource?.(chunk.source_file, chunk.locator)}
+                      className="mt-1.5 min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold text-forest hover:text-ink whitespace-nowrap transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                    >
+                      <span className="whitespace-nowrap">View source row</span>
+                      <ArrowRightIcon />
+                    </button>
                   </div>
                 );
               })}

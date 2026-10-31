@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { RagWorkspace } from "@/components/RagWorkspace";
 import { AgentWorkspace } from "@/components/AgentWorkspace";
 import { DataExplorer } from "@/components/DataExplorer";
+import { SourceFocus, resolveSourceTarget } from "@/lib/sourceLinks";
 
 function BotanicalLeafIcon() {
   return (
@@ -46,10 +47,34 @@ function SwitchIcon() {
 }
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const [activeTab, setActiveTabState] = useState<number>(0);
+  const [sourceFocus, setSourceFocus] = useState<SourceFocus | null>(null);
+  const answerScrollY = useRef<number>(0);
+
+  // Manual tab changes clear any source focus so tab 3 opens in its normal state.
+  const setActiveTab = (tab: number) => {
+    setSourceFocus(null);
+    setActiveTabState(tab);
+  };
 
   const togglePart = () => {
-    setActiveTab((prev) => (prev === 0 ? 1 : 0));
+    setActiveTab(activeTab === 0 ? 1 : 0);
+  };
+
+  const openSource = (sourceFile: string, locator: string) => {
+    const target = resolveSourceTarget(sourceFile, locator);
+    if (!target) return;
+    answerScrollY.current = window.scrollY;
+    setSourceFocus({ ...target, requestId: Date.now() });
+    setActiveTabState(2);
+  };
+
+  const backToAnswer = () => {
+    setSourceFocus(null);
+    setActiveTabState(0);
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: answerScrollY.current, behavior: "auto" });
+    });
   };
 
   return (
@@ -163,11 +188,16 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Main Active Tab Content */}
+      {/* Main Active Tab Content. The Garden Guide stays mounted (hidden) so its
+          answer survives a round trip to the Reference Data tab. */}
       <main className="flex-1">
-        {activeTab === 0 && <RagWorkspace />}
+        <div className={activeTab === 0 ? "" : "hidden"}>
+          <RagWorkspace onOpenSource={openSource} />
+        </div>
         {activeTab === 1 && <AgentWorkspace />}
-        {activeTab === 2 && <DataExplorer />}
+        {activeTab === 2 && (
+          <DataExplorer focusTarget={sourceFocus} onBackToAnswer={backToAnswer} />
+        )}
       </main>
 
       {/* Editorial Colophon Footer */}

@@ -7,6 +7,9 @@ import {
   RawEmailMessage,
   fetchDataSourcesApi,
 } from "@/lib/api";
+import { SourceFocus } from "@/lib/sourceLinks";
+
+const HIGHLIGHT_ROW_CLASS = "bg-mint/70 ring-2 ring-inset ring-forest";
 
 function SearchIcon() {
   return (
@@ -476,12 +479,25 @@ The Western Cape agricultural basin presents distinct microclimatic challenges: 
 ### 4. Verification Benchmark & Reliability Invariants
 * 100% test pass rate across 10 deterministic test suites.
 * Deduplication accurately maps 10 raw emails down to 8 canonical plot records.
-* Typo auto-correction via GBIF corrects species scientific names (e.g., Solanum lycopersicun to Solanum lycopersicum with 96% match confidence).
-* Discrepancies are flagged without dropping data: out-of-range soil pH values trigger concrete dosage recommendations from municipal PDF tables.`;
+* Typo auto-correction via GBIF corrects species scientific names (e.g., Solanumm lykopersikun to Solanum lycopersicum with 96% match confidence).
+* Discrepancies are flagged without dropping data: out-of-range soil pH values trigger concrete dosage recommendations from municipal PDF tables.
+
+### 5. Known Limitations and Practical Production Next Steps
+1. **Live Google OAuth & Account Permissions**: The backend includes working Gmail and Google Calendar API adapters, but currently defaults to realistic fixture data. Live Google integration requires registering an approved Google Cloud OAuth Consent Screen and provisioning client refresh tokens. In production, we would complete Google's verification process so garden coordinators can sign in with their Google accounts with one click and ingest live field inboxes.
+2. **Vector Store Concurrency & Scaling**: We chose embedded ChromaDB SQLite because it keeps local evaluation and single-container cloud hosting completely self-contained with zero external database dependencies. Because SQLite operates in single-writer mode, a busy production setup with dozens of simultaneous workers would benefit from migrating to PostgreSQL with \`pgvector\` or managed Qdrant.
+3. **Real-Time Webhooks vs. On-Demand Runs**: Currently, the verification workflow runs on demand when triggered from the dashboard. In a live deployment, Google Cloud Pub/Sub push notifications (\`users.watch\` for Gmail) and Google Calendar push webhooks would verify incoming field emails automatically the moment they land in the inbox.
+4. **Closing the Loop with SMS and WhatsApp Alerts**: When a plot is flagged for acidic soil or missing batch numbers, the agent calculates the exact lime dosage for manager review. The next step is adding direct messaging: an extension officer can approve the recommendation with one click and automatically text the treatment instructions straight to the gardener's phone via SMS or WhatsApp.`;
 
 type SubTabKey = "crops" | "suburbs" | "pdf_tables" | "part2_demo" | "technical_summary";
 
-export function DataExplorer() {
+interface DataExplorerProps {
+  /** Record to open, scroll to, and highlight (set when a citation is clicked). */
+  focusTarget?: SourceFocus | null;
+  /** Returns to the Garden Guide answer that the citation came from. */
+  onBackToAnswer?: () => void;
+}
+
+export function DataExplorer({ focusTarget = null, onBackToAnswer }: DataExplorerProps) {
   const [activeTab, setActiveTab] = useState<SubTabKey>("crops");
   const [dataSources, setDataSources] = useState<DataSourcesResponse | null>(null);
   const [cropSearch, setCropSearch] = useState<string>("");
@@ -495,6 +511,47 @@ export function DataExplorer() {
   const [showAllPdfRules, setShowAllPdfRules] = useState<boolean>(false);
   const [expandedEmails, setExpandedEmails] = useState<Record<string, boolean>>({});
   const [expandedSections, setExpandedSections] = useState<Record<number, boolean>>({ 0: true });
+  const [highlightKey, setHighlightKey] = useState<string | null>(null);
+
+  // Step 1: when a citation is clicked, make sure the target row is rendered
+  // (right sub-tab, right PDF table, no search filter, full list expanded).
+  useEffect(() => {
+    if (!focusTarget) {
+      setHighlightKey(null);
+      return;
+    }
+    setActiveTab(focusTarget.subTab);
+    if (focusTarget.subTab === "crops" && focusTarget.cropName) {
+      setCropSearch("");
+      setShowAllCrops(true);
+      setHighlightKey(`crop:${focusTarget.cropName.toLowerCase()}`);
+    } else if (focusTarget.subTab === "suburbs" && focusTarget.rowIndex !== undefined) {
+      setSuburbSearch("");
+      setShowAllSuburbs(true);
+      setHighlightKey(`suburb:${focusTarget.rowIndex}`);
+    } else if (
+      focusTarget.subTab === "pdf_tables" &&
+      focusTarget.pdfTable &&
+      focusTarget.rowIndex !== undefined
+    ) {
+      setActivePdfTable(focusTarget.pdfTable);
+      setShowAllPdfRules(true);
+      setHighlightKey(`${focusTarget.pdfTable}:${focusTarget.rowIndex}`);
+    }
+  }, [focusTarget]);
+
+  // Step 2: after the row renders, scroll it to the centre of the viewport.
+  // Re-runs when live API data replaces the fallback rows.
+  useEffect(() => {
+    if (!highlightKey) return;
+    const timer = window.setTimeout(() => {
+      const row = document.querySelector<HTMLElement>(
+        `[data-source-row="${CSS.escape(highlightKey)}"]`
+      );
+      row?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 120);
+    return () => window.clearTimeout(timer);
+  }, [highlightKey, activeTab, activePdfTable, dataSources]);
 
   const scrollIntoFrame = (el: HTMLElement | null) => {
     if (!el) return;
@@ -714,6 +771,28 @@ export function DataExplorer() {
         </div>
       </section>
 
+      {/* Source-focus banner: shown when the user arrived here from a citation */}
+      {focusTarget && highlightKey && (
+        <section
+          aria-live="polite"
+          className="bg-forest text-canvas rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm"
+        >
+          <div className="min-w-0">
+            <p className="text-sm font-semibold">Showing the source behind your answer</p>
+            <p className="font-mono text-xs text-mint break-words">{focusTarget.label}</p>
+          </div>
+          {onBackToAnswer && (
+            <button
+              type="button"
+              onClick={onBackToAnswer}
+              className="min-h-[44px] px-4 rounded-full bg-canvas text-forest hover:bg-mint text-sm font-semibold whitespace-nowrap self-start sm:self-auto transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas"
+            >
+              Back to your answer
+            </button>
+          )}
+        </section>
+      )}
+
       {/* SUB-TAB 1: Crop Planting Guide (JSON) */}
       {activeTab === "crops" && (
         <section className="bg-canvas border-2 border-mint rounded-2xl p-6 shadow-sm space-y-4">
@@ -785,8 +864,16 @@ export function DataExplorer() {
                     ? crop.companion_plants.join(", ")
                     : String(crop.companion_crops || crop.companion_plants || "General companions");
 
+                  const isHighlighted = highlightKey === `crop:${name.toLowerCase()}`;
+
                   return (
-                    <tr key={idx} className="hover:bg-surface/60 transition-colors duration-150">
+                    <tr
+                      key={idx}
+                      data-source-row={`crop:${name.toLowerCase()}`}
+                      className={`transition-colors duration-150 ${
+                        isHighlighted ? HIGHLIGHT_ROW_CLASS : "hover:bg-surface/60"
+                      }`}
+                    >
                       <td className="py-3.5 px-4 font-semibold text-ink">
                         {name}
                       </td>
@@ -909,8 +996,16 @@ export function DataExplorer() {
                     sub.microclimate_notes || sub.typical_amendment_need || "Mediterranean slope."
                   );
 
+                  const isHighlighted = highlightKey === `suburb:${idx}`;
+
                   return (
-                    <tr key={idx} className="hover:bg-surface/60 transition-colors duration-150">
+                    <tr
+                      key={idx}
+                      data-source-row={`suburb:${idx}`}
+                      className={`transition-colors duration-150 ${
+                        isHighlighted ? HIGHLIGHT_ROW_CLASS : "hover:bg-surface/60"
+                      }`}
+                    >
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <div className="font-semibold text-ink">{suburb}</div>
                         <div className="text-xs text-muted">{prov}</div>
@@ -1040,28 +1135,37 @@ export function DataExplorer() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sand/70">
-                  {visibleTable1Rules.map((rule, idx) => (
-                    <tr key={idx} className="hover:bg-surface/60 transition-colors duration-150">
-                      <td className="py-3.5 px-4 font-mono font-semibold text-forest">
-                        {String(rule.rule_id || `RULE-PH-${idx + 1}`)}
-                      </td>
-                      <td className="py-3.5 px-4 font-mono text-xs text-ink">
-                        {String(rule.soil_type || "")}
-                      </td>
-                      <td className="py-3.5 px-4 font-display font-semibold tabular-nums text-ink">
-                        {String(rule.current_ph_bracket || "")}
-                      </td>
-                      <td className="py-3.5 px-4 font-semibold text-ink">
-                        {String(rule.amendment_type || "")}
-                      </td>
-                      <td className="py-3.5 px-4 font-display font-semibold tabular-nums text-forest">
-                        {String(rule.dosage_g_per_m2 || "")} g/m2
-                      </td>
-                      <td className="py-3.5 px-4 text-muted text-xs max-w-sm">
-                        {String(rule.application_notes || "")}
-                      </td>
-                    </tr>
-                  ))}
+                  {visibleTable1Rules.map((rule, idx) => {
+                    const isHighlighted = highlightKey === `table_1:${idx}`;
+                    return (
+                      <tr
+                        key={idx}
+                        data-source-row={`table_1:${idx}`}
+                        className={`transition-colors duration-150 ${
+                          isHighlighted ? HIGHLIGHT_ROW_CLASS : "hover:bg-surface/60"
+                        }`}
+                      >
+                        <td className="py-3.5 px-4 font-mono font-semibold text-forest">
+                          {String(rule.rule_id || `RULE-PH-${idx + 1}`)}
+                        </td>
+                        <td className="py-3.5 px-4 font-mono text-xs text-ink">
+                          {String(rule.soil_type || "")}
+                        </td>
+                        <td className="py-3.5 px-4 font-display font-semibold tabular-nums text-ink">
+                          {String(rule.current_ph_bracket || "")}
+                        </td>
+                        <td className="py-3.5 px-4 font-semibold text-ink">
+                          {String(rule.amendment_type || "")}
+                        </td>
+                        <td className="py-3.5 px-4 font-display font-semibold tabular-nums text-forest">
+                          {String(rule.dosage_g_per_m2 || "")} g/m2
+                        </td>
+                        <td className="py-3.5 px-4 text-muted text-xs max-w-sm">
+                          {String(rule.application_notes || "")}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -1091,28 +1195,37 @@ export function DataExplorer() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sand/70">
-                  {visibleTable2Rules.map((rule, idx) => (
-                    <tr key={idx} className="hover:bg-surface/60 transition-colors duration-150">
-                      <td className="py-3.5 px-4 font-mono font-semibold text-forest">
-                        {String(rule.rule_id || `RULE-WT-${idx + 1}`)}
-                      </td>
-                      <td className="py-3.5 px-4 font-display tabular-nums text-ink">
-                        {String(rule.temp_bracket_c || "")}
-                      </td>
-                      <td className="py-3.5 px-4 tabular-nums text-muted">
-                        {String(rule.rainfall_bracket_mm || "")}
-                      </td>
-                      <td className="py-3.5 px-4 font-mono text-xs text-ink">
-                        {String(rule.soil_type || "")}
-                      </td>
-                      <td className="py-3.5 px-4 font-display font-semibold tabular-nums text-forest">
-                        {String(rule.weekly_water_adjustment_mm || "")} mm
-                      </td>
-                      <td className="py-3.5 px-4 text-muted text-xs max-w-sm">
-                        {String(rule.mulching_recommendation || "")}
-                      </td>
-                    </tr>
-                  ))}
+                  {visibleTable2Rules.map((rule, idx) => {
+                    const isHighlighted = highlightKey === `table_2:${idx}`;
+                    return (
+                      <tr
+                        key={idx}
+                        data-source-row={`table_2:${idx}`}
+                        className={`transition-colors duration-150 ${
+                          isHighlighted ? HIGHLIGHT_ROW_CLASS : "hover:bg-surface/60"
+                        }`}
+                      >
+                        <td className="py-3.5 px-4 font-mono font-semibold text-forest">
+                          {String(rule.rule_id || `RULE-WT-${idx + 1}`)}
+                        </td>
+                        <td className="py-3.5 px-4 font-display tabular-nums text-ink">
+                          {String(rule.temp_bracket_c || "")}
+                        </td>
+                        <td className="py-3.5 px-4 tabular-nums text-muted">
+                          {String(rule.rainfall_bracket_mm || "")}
+                        </td>
+                        <td className="py-3.5 px-4 font-mono text-xs text-ink">
+                          {String(rule.soil_type || "")}
+                        </td>
+                        <td className="py-3.5 px-4 font-display font-semibold tabular-nums text-forest">
+                          {String(rule.weekly_water_adjustment_mm || "")} mm
+                        </td>
+                        <td className="py-3.5 px-4 text-muted text-xs max-w-sm">
+                          {String(rule.mulching_recommendation || "")}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
