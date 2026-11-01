@@ -163,7 +163,13 @@ export interface DataSourcesResponse {
   technical_summary_md: string;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Next.js inlines NEXT_PUBLIC_* only when the variable exists at build time.
+// When it is missing on the build host, production bundles must still reach the
+// deployed Hugging Face backend rather than a localhost URL the browser cannot see.
+const PRODUCTION_API_URL = "https://melkman-ai-agent-challenge.hf.space";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production" ? PRODUCTION_API_URL : "http://localhost:8000");
 
 export const INITIAL_RAG_RESPONSE: RagQueryResponse = {
   answer:
@@ -669,31 +675,33 @@ export const INITIAL_AGENT_RESPONSE: AgentRunResponse = {
     "REC-008,Pieter De Villiers,Constantia,PLOT-C09,2026-11-09,Kale,Brassica oleracea,30,6.1,BATCH-CT-2026-12,AUTO_CORRECTED,QUANTITY_ROUNDED_FROM_FOLLOWUP\n",
 };
 
+/**
+ * Sends a question to the live RAG backend.
+ *
+ * Throws on network or HTTP failure so the caller can show the error. It must not
+ * fall back to INITIAL_RAG_RESPONSE: that fixture is a fixed Woodstock answer and
+ * would hide a broken backend behind a plausible but wrong reply.
+ */
 export async function queryRagApi(
   question: string,
   chatHistory: ChatMessage[] = []
 ): Promise<RagQueryResponse> {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/rag/query`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        question,
-        chat_history: chatHistory,
-      }),
-    });
+  const res = await fetch(`${API_BASE_URL}/api/rag/query`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      question,
+      chat_history: chatHistory,
+    }),
+  });
 
-    if (!res.ok) {
-      throw new Error(`RAG API returned status ${res.status}`);
-    }
-
-    return (await res.json()) as RagQueryResponse;
-  } catch (err) {
-    console.warn("Backend unavailable, using initial RAG fixture:", err);
-    return INITIAL_RAG_RESPONSE;
+  if (!res.ok) {
+    throw new Error(`RAG API returned status ${res.status}`);
   }
+
+  return (await res.json()) as RagQueryResponse;
 }
 
 export async function runVerificationAgentApi(

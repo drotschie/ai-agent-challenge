@@ -196,6 +196,9 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [response, setResponse] = useState<RagQueryResponse>(INITIAL_RAG_RESPONSE);
   const [isLoading, setIsLoading] = useState(false);
+  // True until the first live backend answer arrives; the starting card is a fixed example.
+  const [isExampleResponse, setIsExampleResponse] = useState(true);
+  const [queryError, setQueryError] = useState<string | null>(null);
 
   // Progressive disclosure states to keep panels calm and scannable
   const [showFullAnswer, setShowFullAnswer] = useState(false);
@@ -259,6 +262,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
     }
     setIsLoading(true);
     setShowFullAnswer(false);
+    setQueryError(null);
     const updatedHistory: ChatMessage[] = [
       ...chatHistory,
       { role: "user", content: queryText },
@@ -267,6 +271,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
     try {
       const result = await queryRagApi(queryText, chatHistory);
       setResponse(result);
+      setIsExampleResponse(false);
       setChatHistory([
         ...updatedHistory,
         { role: "assistant", content: result.answer },
@@ -274,6 +279,10 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
       scrollToResponsePanel();
     } catch (err) {
       console.warn("Failed to execute query:", err);
+      setQueryError(
+        "The guide could not reach the backend, so this question was not answered. " +
+          "The backend may be waking up; try again in about 30 seconds."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -420,7 +429,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sand pb-4">
               <div>
                 <p className="text-sm font-medium text-forest">
-                  Guide response for{" "}
+                  {isExampleResponse ? "Example response for " : "Guide response for "}
                   {response.live_weather?.suburb || "your garden"}
                 </p>
                 <h2 className="font-display text-2xl sm:text-3xl font-semibold text-ink tracking-normal">
@@ -434,6 +443,15 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
                   "5.3"}
               </span>
             </div>
+
+            {queryError && (
+              <div
+                role="alert"
+                className="bg-surface border-2 border-sand-border text-ink rounded-xl p-4 text-sm leading-relaxed"
+              >
+                {queryError}
+              </div>
+            )}
 
             {/* Primary Action Takeaway Banner */}
             {response.action_banner && (
