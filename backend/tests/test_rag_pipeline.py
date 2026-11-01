@@ -110,3 +110,55 @@ def test_fastapi_endpoints_rag_and_data_sources() -> None:
         assert len(sources_data["demo_calendar_events"]) == 8
         assert len(sources_data["demo_gardener_emails"]) == 10
         assert "technical_summary_md" in sources_data
+
+
+def test_treatment_rule_optimal_ph_returns_none() -> None:
+    """Verify pH 6.0-7.2 in Table 1 returns None (optimal, no chemical amendment)."""
+    from app.rag.pipeline import _find_matching_treatment_rule
+
+    rule, locator = _find_matching_treatment_rule("clay_loam", 6.5)
+    assert rule is None
+    assert locator is None
+
+    # Below 6.0 should still return a rule (e.g. 5.3 -> Agricultural Lime)
+    rule_acidic, loc_acidic = _find_matching_treatment_rule("sandy_loam", 5.3)
+    assert rule_acidic is not None
+    assert loc_acidic is not None
+    assert "Lime" in rule_acidic["amendment"]
+
+
+def test_rag_pipeline_optimal_ph_durbanville() -> None:
+    """Verify Durbanville baseline pH 6.5 does not prescribe lime and recognizes optimal pH."""
+    question = "Can I plant Beetroot and Carrot in Durbanville clay_loam soil right now?"
+    res = run_rag_query(RagQueryRequest(question=question, chat_history=[]))
+
+    assert res.live_weather is not None
+    assert res.live_weather.suburb == "Durbanville"
+    assert res.query_transform.detected_suburb == "Durbanville"
+    # Action banner should indicate optimal pH, not prescribe lime
+    assert "Optimal Soil pH" in res.action_banner or "no lime" in res.action_banner.lower()
+    assert "Apply 260g/m2" not in res.action_banner
+
+
+def test_unspecified_suburb_prepends_woodstock_note() -> None:
+    """Verify queries with no suburb prepend a note explaining Woodstock is the baseline."""
+    question = "What vegetables should I plant this month?"
+    res = run_rag_query(RagQueryRequest(question=question, chat_history=[]))
+
+    assert res.query_transform.detected_suburb is None
+    assert res.live_weather.suburb == "Woodstock"
+    assert "Woodstock is used as the regional baseline" in res.answer
+
+
+def test_suburb_context_switch_prevents_ph_leakage() -> None:
+    """Verify soil pH from history does not leak into a question asking about a different suburb."""
+    history = [
+        ChatMessage(role="user", content="I tested Woodstock soil and it has pH 5.3."),
+        ChatMessage(role="assistant", content="Woodstock sandy loam has a baseline pH of 5.5."),
+    ]
+    question = "Can I plant Beetroot and Carrot in Durbanville clay_loam soil?"
+    qt = transform_query(question=question, chat_history=history)
+
+    assert qt.detected_suburb == "Durbanville"
+    # pH 5.3 was for Woodstock and must NOT leak to Durbanville
+    assert qt.detected_soil_ph is None

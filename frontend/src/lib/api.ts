@@ -169,7 +169,7 @@ export interface DataSourcesResponse {
 const PRODUCTION_API_URL = "https://melkman-ai-agent-challenge.hf.space";
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
-  (process.env.NODE_ENV === "production" ? PRODUCTION_API_URL : "http://localhost:8000");
+  (process.env.NODE_ENV === "production" ? "" : "http://localhost:8000");
 
 export const INITIAL_RAG_RESPONSE: RagQueryResponse = {
   answer:
@@ -686,22 +686,41 @@ export async function queryRagApi(
   question: string,
   chatHistory: ChatMessage[] = []
 ): Promise<RagQueryResponse> {
-  const res = await fetch(`${API_BASE_URL}/api/rag/query`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      question,
-      chat_history: chatHistory,
-    }),
+  const payload = JSON.stringify({
+    question,
+    chat_history: chatHistory,
   });
+  const headers = {
+    "Content-Type": "application/json",
+  };
 
-  if (!res.ok) {
-    throw new Error(`RAG API returned status ${res.status}`);
+  // 1. Try primary endpoint (relative /api route via Next.js proxy rewrite or custom URL)
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/rag/query`, {
+      method: "POST",
+      headers,
+      body: payload,
+    });
+    if (res.ok) {
+      return (await res.json()) as RagQueryResponse;
+    }
+  } catch (primaryErr) {
+    console.warn("Primary endpoint failed, attempting direct HF Space URL:", primaryErr);
   }
 
-  return (await res.json()) as RagQueryResponse;
+  // 2. Direct fallback to Hugging Face Docker Space if primary failed
+  if (API_BASE_URL !== PRODUCTION_API_URL) {
+    const directRes = await fetch(`${PRODUCTION_API_URL}/api/rag/query`, {
+      method: "POST",
+      headers,
+      body: payload,
+    });
+    if (directRes.ok) {
+      return (await directRes.json()) as RagQueryResponse;
+    }
+  }
+
+  throw new Error("Unable to reach backend via either local proxy or live Space.");
 }
 
 export async function runVerificationAgentApi(

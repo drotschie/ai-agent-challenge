@@ -190,9 +190,8 @@ interface RagWorkspaceProps {
 }
 
 export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
-  const [question, setQuestion] = useState(
-    "What vegetables grow well in Woodstock with soil pH 5.3, and how much lime do I need?"
-  );
+  const [question, setQuestion] = useState("");
+  const [activeQuery, setActiveQuery] = useState("");
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [response, setResponse] = useState<RagQueryResponse>(INITIAL_RAG_RESPONSE);
   const [isLoading, setIsLoading] = useState(false);
@@ -260,6 +259,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
     if (!queryText.trim() || isLoading) {
       return;
     }
+    setActiveQuery(queryText);
     setIsLoading(true);
     setShowFullAnswer(false);
     setQueryError(null);
@@ -280,8 +280,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
     } catch (err) {
       console.warn("Failed to execute query:", err);
       setQueryError(
-        "The guide could not reach the backend, so this question was not answered. " +
-          "The backend may be waking up; try again in about 30 seconds."
+        "The guide could not reach the backend. The backend may be waking up from sleep; please retry."
       );
     } finally {
       setIsLoading(false);
@@ -351,7 +350,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask about soil pH, Cape crops, lime amendments, or watering..."
+            placeholder="Ask about any suburb (e.g. Durbanville, Constantia), crop, or soil pH..."
             className="min-h-[44px] flex-1 bg-transparent text-sm sm:text-base text-ink placeholder-muted/60 focus:outline-none"
           />
           <button
@@ -387,7 +386,7 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
                 "What vegetables grow well in Woodstock with soil pH 5.3, and how much lime do I need?"
               )
             }
-            className="min-h-[44px] px-3.5 py-1.5 rounded-full bg-mint hover:bg-sage/60 text-ink text-xs font-semibold whitespace-nowrap transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+            className="min-h-[44px] px-3.5 py-1.5 rounded-full bg-sand hover:bg-sand-border text-ink text-xs font-medium whitespace-nowrap transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
           >
             Woodstock pH
           </button>
@@ -444,64 +443,91 @@ export function RagWorkspace({ onOpenSource }: RagWorkspaceProps) {
               </span>
             </div>
 
+            {/* Active Loading Banner */}
+            {isLoading && (
+              <div className="bg-surface border-2 border-forest/40 rounded-xl p-4 flex items-center gap-3 animate-pulse">
+                <SpinnerIcon />
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-forest">
+                    Consulting Cape Town Agronomic RAG System...
+                  </p>
+                  <p className="text-xs text-muted truncate">
+                    Analyzing "{activeQuery || question}"
+                  </p>
+                </div>
+              </div>
+            )}
+
             {queryError && (
               <div
                 role="alert"
-                className="bg-surface border-2 border-sand-border text-ink rounded-xl p-4 text-sm leading-relaxed"
+                className="bg-surface border-2 border-sand-border text-ink rounded-xl p-4 text-sm leading-relaxed space-y-2"
               >
-                {queryError}
-              </div>
-            )}
-
-            {/* Primary Action Takeaway Banner */}
-            {response.action_banner && (
-              <div className="bg-forest text-canvas rounded-xl p-4 flex items-start gap-3">
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  className="w-5 h-5 text-mint flex-shrink-0 mt-0.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <p className="text-sm sm:text-base font-medium leading-relaxed">
-                  {response.action_banner}
+                <p className="font-semibold text-forest">
+                  Could not reach the guide backend
                 </p>
-              </div>
-            )}
-
-            {/* Main Readable Answer with Progressive Disclosure */}
-            <div className="space-y-3">
-              <p className="whitespace-pre-line leading-relaxed text-ink text-base sm:text-[17px]">
-                {displayedAnswer}
-              </p>
-
-              {isLongAnswer && (
+                <p className="text-muted">{queryError}</p>
                 <button
                   type="button"
-                  onClick={(e) => {
-                    const card = e.currentTarget.closest("div");
-                    setShowFullAnswer((prev) => {
-                      const next = !prev;
-                      if (next) scrollIntoFrame(card);
-                      return next;
-                    });
-                  }}
-                  className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface hover:bg-sand border border-sand text-sm font-semibold text-forest whitespace-nowrap transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                  onClick={() => handleQuery(activeQuery || question)}
+                  className="mt-1 px-4 py-1.5 rounded-full bg-forest text-canvas text-xs font-medium hover:bg-muted transition-colors"
                 >
-                  <span>
-                    {showFullAnswer ? "Show concise summary" : "Read full answer"}
-                  </span>
-                  <ChevronDownIcon expanded={showFullAnswer} />
+                  Retry Question
                 </button>
+              </div>
+            )}
+
+            <div className={isLoading ? "opacity-35 pointer-events-none transition-opacity duration-200 space-y-5" : "space-y-5"}>
+              {/* Primary Action Takeaway Banner */}
+              {response.action_banner && (
+                <div className="bg-forest text-canvas rounded-xl p-4 flex items-start gap-3">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    className="w-5 h-5 text-mint flex-shrink-0 mt-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <p className="text-sm sm:text-base font-medium leading-relaxed">
+                    {response.action_banner}
+                  </p>
+                </div>
               )}
+
+              {/* Main Readable Answer with Progressive Disclosure */}
+              <div className="space-y-3">
+                <p className="whitespace-pre-line leading-relaxed text-ink text-base sm:text-[17px]">
+                  {displayedAnswer}
+                </p>
+
+                {isLongAnswer && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      const card = e.currentTarget.closest("div");
+                      setShowFullAnswer((prev) => {
+                        const next = !prev;
+                        if (next) scrollIntoFrame(card);
+                        return next;
+                      });
+                    }}
+                    className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface hover:bg-sand border border-sand text-sm font-semibold text-forest whitespace-nowrap transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                  >
+                    <span>
+                      {showFullAnswer ? "Show concise summary" : "Read full answer"}
+                    </span>
+                    <ChevronDownIcon expanded={showFullAnswer} />
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* Compact Citation Pills & Optional Query Rewrite Disclosure */}

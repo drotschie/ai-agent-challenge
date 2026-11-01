@@ -191,22 +191,32 @@ def _ph_matches_bracket(ph: float, bracket: str) -> bool:
 def _find_matching_treatment_rule(
     soil_type: str,
     effective_ph: float,
-) -> tuple[dict[str, Any], str]:
-    """Find matching Table 1 row in soil_treatment_and_watering_rules.pdf across all 5 soil types."""
+) -> tuple[dict[str, Any] | None, str | None]:
+    """Find matching Table 1 row in soil_treatment_and_watering_rules.pdf across all 5 soil types.
+
+    Table 1 contains amendment brackets:
+    - 4.5 - 5.0: Dolomitic Lime
+    - 5.0 - 5.5: Agricultural Lime
+    - 5.5 - 6.0: Agricultural Lime
+    - 6.0 - 7.2: Balanced optimal range, no chemical amendment required (returns None, None)
+    - 7.2 - 7.8: Elemental Sulfur
+    - 7.8 - 8.5: Elemental Sulfur
+    """
     pdf_chunks = _get_pdf_chunks()
     normalized_soil = soil_type.lower().strip()
 
-    # Target bracket fallback if pH is slightly outside exact bracket boundaries
-    target_bracket = "5.0 - 5.5"
+    # Determine target bracket using half-open intervals
     if effective_ph < 5.0:
         target_bracket = "4.5 - 5.0"
-    elif 5.0 <= effective_ph <= 5.5:
+    elif 5.0 <= effective_ph < 5.5:
         target_bracket = "5.0 - 5.5"
-    elif 5.5 < effective_ph <= 6.2:
+    elif 5.5 <= effective_ph < 6.0:
         target_bracket = "5.5 - 6.0"
-    elif 7.0 <= effective_ph <= 7.8:
+    elif 6.0 <= effective_ph < 7.2:
+        return None, None
+    elif 7.2 <= effective_ph < 7.8:
         target_bracket = "7.2 - 7.8"
-    elif effective_ph > 7.8:
+    else:
         target_bracket = "7.8 - 8.5"
 
     for c in pdf_chunks:
@@ -214,8 +224,8 @@ def _find_matching_treatment_rule(
             chunk_soil = str(c.metadata.get("soil_type", "")).lower()
             if chunk_soil == normalized_soil:
                 fields = _parse_chunk_fields(c.text)
-                bracket = fields.get("current_ph_bracket", "")
-                if _ph_matches_bracket(effective_ph, bracket) or bracket == target_bracket:
+                bracket = fields.get("current_ph_bracket", "").strip()
+                if bracket == target_bracket:
                     return {
                         "rule_id": fields.get("rule_id", "RULE-PH-02"),
                         "dosage": fields.get("dosage_g_per_m2", "150"),
@@ -224,13 +234,7 @@ def _find_matching_treatment_rule(
                         "chunk_id": c.chunk_id,
                     }, c.locator
 
-    return {
-        "rule_id": "RULE-PH-02",
-        "dosage": "150",
-        "amendment": "Agricultural Lime",
-        "target_shift": "optimal 6.0-6.8",
-        "chunk_id": "soil_treatment_and_watering_rules.pdf:p1_t1_r2",
-    }, "Page 1, Table 1, Row 2"
+    return None, None
 
 
 def _build_grounded_answer(
@@ -242,8 +246,8 @@ def _build_grounded_answer(
     effective_ph: float,
     weather: LiveWeatherInfo,
     crops: list[dict[str, Any]],
-    treatment_rule: dict[str, Any],
-    treatment_locator: str,
+    treatment_rule: dict[str, Any] | None,
+    treatment_locator: str | None,
     csv_locator: str,
     pdf_watering_locator: str,
 ) -> str:
@@ -254,14 +258,16 @@ def _build_grounded_answer(
     for c in crops:
         c_name = c["crop_name"]
         sci = c.get("scientific_name", "")
-        ph_min = c.get("soil_ph_min", 6.0)
-        ph_max = c.get("soil_ph_max", 7.0)
+        ph_min = float(c.get("soil_ph_min", 6.0))
+        ph_max = float(c.get("soil_ph_max", 7.0))
         water = c.get("water_mm_per_week", 30)
-        ph_compatibility = (
-            f"Your current soil pH of {effective_ph} is below the optimal threshold for {c_name}."
-            if effective_ph < ph_min
-            else f"{c_name} will thrive directly at your soil pH of {effective_ph}."
-        )
+        if effective_ph < ph_min:
+            ph_compatibility = f"Your current soil pH of {effective_ph} is below the optimal threshold for {c_name}."
+        elif effective_ph > ph_max:
+            ph_compatibility = f"Your current soil pH of {effective_ph} is above the optimal threshold for {c_name}."
+        else:
+            ph_compatibility = f"{c_name} will thrive directly at your soil pH of {effective_ph}."
+
         crops_text_list.append(
             f"{c_name} ({sci}) requires an optimal soil pH of {ph_min} - {ph_max} "
             f"and {water} mm of water per week [crop_planting_guide.json · {c_name}]. "
@@ -269,8 +275,20 @@ def _build_grounded_answer(
         )
 
     crops_summary = " ".join(crops_text_list)
-    dosage = treatment_rule.get("dosage", "150")
-    amendment = treatment_rule.get("amendment", "Agricultural Lime")
+
+    if treatment_rule and treatment_locator:
+        dosage = treatment_rule.get("dosage", "150")
+        amendment = treatment_rule.get("amendment", "Agricultural Lime")
+        treatment_sentence = (
+            f"To adjust {soil_type} soil from pH {effective_ph} into the optimal 6.0 - 6.8 range, "
+            f"apply {dosage}g/m2 {amendment} incorporated into the top 20cm of soil 2 weeks before "
+            f"planting [soil_treatment_and_watering_rules.pdf · {treatment_locator}]."
+        )
+    else:
+        treatment_sentence = (
+            f"Native {soil_type} soil at pH {effective_ph} is already within the balanced 6.0 - 7.2 range, "
+            f"so no chemical lime or sulfur amendment is required [soil_treatment_and_watering_rules.pdf · Page 1, Table 1]."
+        )
 
     return (
         f"In {suburb}, the native soil type is {soil_type} with a regional baseline soil pH "
@@ -278,9 +296,7 @@ def _build_grounded_answer(
         f"Live conditions show {weather.temperature_c:.1f} C, {weather.condition}, "
         f"{weather.humidity_pct}% humidity, and {frost_text} [Open-Meteo API & Regional Datasets].\n\n"
         f"{crops_summary}\n\n"
-        f"To adjust {soil_type} soil from pH {effective_ph} into the optimal 6.0 - 6.8 range, "
-        f"apply {dosage}g/m2 {amendment} incorporated into the top 20cm of soil 2 weeks before "
-        f"planting [soil_treatment_and_watering_rules.pdf · {treatment_locator}]. "
+        f"{treatment_sentence} "
         f"For irrigation, maintain baseline watering adjusted for ambient temperature brackets "
         f"[soil_treatment_and_watering_rules.pdf · {pdf_watering_locator}]."
     )
@@ -341,20 +357,21 @@ def run_rag_query(
     pdf_query = f"{soil_type} lime sulfur pH {effective_ph} application dosage"
     add_candidates(store.search(pdf_query, top_k=3, where={"source_file": "soil_treatment_and_watering_rules.pdf"}))
 
-    # Boost the exact matched PDF Table 1 rule chunk for (soil_type, effective_ph)
+    # Boost the exact matched PDF Table 1 rule chunk for (soil_type, effective_ph) if amendment needed
     treatment_rule, treatment_locator = _find_matching_treatment_rule(soil_type, effective_ph)
-    rule_chunk_id = treatment_rule.get("chunk_id", "soil_treatment_and_watering_rules.pdf:p1_t1_r2")
-    for c in _get_pdf_chunks():
-        if c.chunk_id == rule_chunk_id:
-            candidate_chunks[rule_chunk_id] = RetrievedChunk(
-                chunk_id=c.chunk_id,
-                source_file=c.source_file,
-                locator=c.locator,
-                similarity=0.96,
-                text=c.text,
-                metadata=c.metadata,
-            )
-            break
+    if treatment_rule:
+        rule_chunk_id = treatment_rule.get("chunk_id", "")
+        for c in _get_pdf_chunks():
+            if c.chunk_id == rule_chunk_id:
+                candidate_chunks[rule_chunk_id] = RetrievedChunk(
+                    chunk_id=c.chunk_id,
+                    source_file=c.source_file,
+                    locator=c.locator,
+                    similarity=0.96,
+                    text=c.text,
+                    metadata=c.metadata,
+                )
+                break
 
     # Categorize candidates by source file to guarantee presence of all 3 sources
     csv_candidates = [c for c in candidate_chunks.values() if c.source_file == "regional_soil_and_climate.csv"]
@@ -409,15 +426,20 @@ def run_rag_query(
     selected_chunks.sort(key=lambda x: x.similarity, reverse=True)
 
     # 4. Action banner construction
-    treatment_rule, treatment_locator = _find_matching_treatment_rule(soil_type, effective_ph)
-    dosage = treatment_rule["dosage"]
-    amendment = treatment_rule["amendment"]
-    action_verb = "raise" if "Lime" in amendment else "adjust"
-    action_banner = (
-        f"Action: Apply {dosage}g/m2 {amendment} to {action_verb} {soil_type} "
-        f"soil pH from {effective_ph} to optimal 6.0-6.8 "
-        f"(see [soil_treatment_and_watering_rules.pdf · {treatment_locator}])."
-    )
+    if treatment_rule and treatment_locator:
+        dosage = treatment_rule["dosage"]
+        amendment = treatment_rule["amendment"]
+        action_verb = "raise" if "Lime" in amendment else "lower"
+        action_banner = (
+            f"Action: Apply {dosage}g/m2 {amendment} to {action_verb} {soil_type} "
+            f"soil pH from {effective_ph} to optimal 6.0-6.8 "
+            f"(see [soil_treatment_and_watering_rules.pdf · {treatment_locator}])."
+        )
+    else:
+        action_banner = (
+            f"Optimal Soil pH: {soil_type} soil at pH {effective_ph} is within the 6.0–7.2 range; "
+            f"no lime or sulfur amendment is required (see [soil_treatment_and_watering_rules.pdf · Page 1, Table 1])."
+        )
 
     # 5. Recommended crops construction
     guide_crops = _get_crops_guide()
@@ -531,6 +553,21 @@ def run_rag_query(
         final_answer = deterministic_answer
     else:
         final_answer = llm_answer
+
+    # Prepend suburb explanation if question didn't name a known suburb
+    suburb_note = ""
+    if not qt.detected_suburb:
+        suburb_note = (
+            "Note: No suburb was specified in your question, so Woodstock is used as the regional baseline. "
+            "Specify your suburb (e.g. Durbanville, Constantia) for local soil and weather data.\n\n"
+        )
+    elif qt.detected_suburb.strip().lower() != weather.suburb.strip().lower():
+        suburb_note = (
+            f"Note: '{qt.detected_suburb}' is not in our regional soil dataset, so Woodstock is used as the baseline. "
+            "Choose a supported Western Cape suburb for tailored local guidance.\n\n"
+        )
+
+    final_answer = suburb_note + final_answer
 
     return RagQueryResponse(
         answer=final_answer,

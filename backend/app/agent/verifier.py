@@ -121,10 +121,16 @@ def verify_single_record(
         if record.measured_soil_ph < soil_ph_min or record.measured_soil_ph > soil_ph_max:
             flags.append("SOIL_PH_OUT_OF_RANGE")
             treatment_rule, _ = _find_matching_treatment_rule(soil_type, record.measured_soil_ph)
-            soil_treatment_recommendation = (
-                f"Apply {treatment_rule['dosage']}g/m2 {treatment_rule['amendment']} "
-                f"({soil_type}, pH {record.measured_soil_ph} -> {soil_ph_min:.1f}-{soil_ph_max:.1f})"
-            )
+            if treatment_rule:
+                soil_treatment_recommendation = (
+                    f"Apply {treatment_rule['dosage']}g/m2 {treatment_rule['amendment']} "
+                    f"({soil_type}, pH {record.measured_soil_ph} -> {soil_ph_min:.1f}-{soil_ph_max:.1f})"
+                )
+            else:
+                soil_treatment_recommendation = (
+                    f"Measured soil pH {record.measured_soil_ph} is outside ideal range ({ideal_ph_range}) for {record.crop_name}; "
+                    f"Table 1 lists no direct chemical amendment for pH {record.measured_soil_ph} in {soil_type}."
+                )
         else:
             soil_treatment_recommendation = (
                 f"Optimal soil pH ({record.measured_soil_ph} within {ideal_ph_range}); no pH amendment required"

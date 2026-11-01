@@ -313,7 +313,24 @@ def transform_query(
     # 3. Soil pH detection
     soil_ph = detect_soil_ph(question)
     ph_from_history = False
-    if soil_ph is None and history:
+
+    # Prevent soil pH leakage across different suburbs in chat history
+    prior_history_suburb = None
+    if history:
+        for msg in reversed(history):
+            s = detect_suburb(msg.content)
+            if s:
+                prior_history_suburb = s
+                break
+
+    question_suburb = detect_suburb(question)
+    suburb_changed = bool(
+        question_suburb
+        and prior_history_suburb
+        and question_suburb.lower() != prior_history_suburb.lower()
+    )
+
+    if soil_ph is None and history and not suburb_changed:
         for msg in reversed(history):
             found_ph = detect_soil_ph(msg.content)
             if found_ph is not None:
